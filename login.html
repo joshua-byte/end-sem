@@ -1,0 +1,173 @@
+<html>
+    <head>
+        <title>My Planner -2024</title>
+
+        <!-- Links to the fonts-->
+        <link href='https://fonts.googleapis.com/css?family=Whisper' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Trirong' rel='stylesheet'>
+        <!--End of Link To Forms-->
+        
+    </head>
+    <style>
+        
+/*Adjusting the margins and paddings*/
+*{
+    margin:0%;
+    padding:0%;
+}
+/*End of Adjusting margins and paddings*/
+
+/*Specifying animation*/
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 0.8;}
+}
+/*End of Speicfying Animation*/
+
+/*Adding Background Image*/
+body{
+    background-image: url('https://assets-global.website-files.com/606a802fcaa89bc357508cad/60ae809b5aebd71c6368c87d_Creative-Ideas.png') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: luminosity;
+    font-family: 'Whisper';font-size: 22px;
+}
+/*End of Adding a Background Image*/
+
+/*Formatting Title*/
+h1 {
+color: rgb(0, 0, 0);
+font-size: 65px;
+text-align: Left;
+font-family: 'Whisper';font-size: 90px;
+text-shadow: 3px 3px 3px #ababab;
+}
+sub{
+    color: rgb(0, 0, 0);
+font-size: 30px;
+text-align: center;
+}
+/*End of Formatting Title*/
+
+/*Formatting Login Box*/
+.fieldset3{
+    position: absolute;
+    box-sizing: border-box;
+    padding-bottom: 10px;
+    top: 3%;
+    right:3.5%;
+    width: 21%;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    height: 45%;
+    border-color:rgb(252, 196, 208);
+    border-width: 6px;
+    font-size: small;
+}
+/*End of Formatting Login Box*/
+
+/*Formatting Login box legend*/
+legend{
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+}
+/*End of Formatting Login Box Legend*/
+
+/*Formatting Name Tag*/
+input[type='text']{
+    background-color: rgb(0, 0, 0,0);
+    border-style: dotted;
+}
+/*End of FOrmatting Name Tag*/
+
+/*Formatting Email Tag*/
+input[type='email']{
+    background-color: rgb(0, 0, 0,0);
+    border-style: dotted;
+}
+/*End of Formatting Email Tag*/
+
+/*Formatting Password Tag*/
+input[type='password']{
+    background-color: rgb(0, 0, 0,0);
+    border-style: dotted;
+}
+/*End of Formatting Password Tag*/
+
+/*Formatting Submit Button*/
+button{
+    position: absolute;
+    top: 72%;
+    right: 9%;
+    padding: 3px;
+    border:0%;
+    background-color: rgb(252, 234, 234);
+}
+/*End of Formatting Submit Button*/
+
+/*Formatting Font*/
+.font{
+    font-family: Trirong;
+}
+/*End of Formatting Font*/
+
+/*Formatting About Us TextBox*/
+.AboutUs{
+    position: absolute;
+    top: 150px;
+    left:50px;
+    width: 60%;
+    height: 57%;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.5;
+    animation: fadeIn 8s;
+}
+/*End of Formatting About Us TextBox*/
+
+/*Formatting Title*/
+h2 {
+    color: rgb(0, 0, 0);
+    font-size: 40px;
+    text-align: Left;
+    font-family: 'Trirong';font-size: 30px;
+    }
+/*End of FOrmatting Title*/
+
+
+
+    </style>
+    <body>
+        <!--Main Heading-->
+        <h1> My Planner<sub>~2024</sub></h1>
+        <!--End of Main Heading-->
+
+        <!--About Us Text Box-->
+        <div class="AboutUs">
+            <div class="font">
+            <h2><i>About My Planner:</i></h2>
+            <i>Welcome to My Planner, your ultimate destination for seamless organization and efficient time management. In the hustle and bustle of today's fast-paced world, staying on top of your commitments and responsibilities can be a daunting task. That's where My Planner steps in to simplify your life and bring harmony to your daily routine. At My Planner, we understand the importance of having a reliable and user-friendly tool to help you stay organized. </i>
+            </div>
+        </div>
+        <!--End of About Us Text Box-->
+
+        <!--Login Box-->
+        <div class="login">
+                <fieldset class="fieldset3">
+                    <legend>Login</legend>
+                    <div class="font">
+                        <br><br>
+                        {% if error %}
+                        <p style="color: red;">{{ error }}</p>
+                         {% endif %}
+                        <form action="{{ url_for('login') }}" method="POST">
+                            <input type="text" name="username" placeholder="Enter Username" required><br><br>
+                            <input type="password" name="password" placeholder="Enter Password" required><br><br>
+                            <button type="submit">Login</button>
+                         </form>
+                    </div>
+                </fieldset>
+        </div>
+        <!--End of Login Box-->
+    </body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Planner - 2024</title>
+    <link href='https://fonts.googleapis.com/css?family=Whisper' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Adding background overlay to body */
+        body {
+            position: relative;
+        }
+
+        /* Styling title */
+        h1 {
+            color: #000000; /* Black text color */
+            font-size: 65px;
+            padding-left: 50px;
+            text-align: left;
+            font-family: 'Whisper', sans-serif;
+            transition: transform 0.3s ease; /* Adding transition effect */
+        }
+
+        /* Title hover effect */
+        h1:hover {
+            transform: scale(1.05); /* Scale up on hover */
+        }
+
+        /* Styling subtext */
+        sub {
+            color: #000000;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        /* Styling fieldsets */
+        fieldset {
+            margin: 10px;
+            height: max-content;
+            border: 2px solid #f0f0f0; /* Light border color */
+            border-radius: 10px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            transition: box-shadow 0.3s ease; /* Adding transition effect */
+            box-sizing: content-box;
+        }
+
+        /* Adding scrolling to calendar */
+        .fieldset2 {
+            overflow-x: hidden;
+            overflow-y: auto;
+            max-height: 500px;
+        }
+
+        .calendar {
+            max-height: 500px;
+        }
+
+        .enter_event {
+            bottom: 10px;
+        }
+
+        /* Styling textareas */
+        textarea {
+            background-color: rgb(246, 240, 240); /* Semi-transparent white */
+            border: 2px;
+            width: 80%;
+            margin-top: 10px;
+            box-sizing: border-box;
+        }
+
+        /* Styling checkboxes */
+        .checkbox {
+            margin-right: 10px;
+            accent-color: rgb(246, 240, 240);
+        }
+
+        /* Styling table */
+        table {
+            width: 90%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 2px solid #ffffff;
+        }
+
+        th {
+            background-color: #f6a9a9;
+        }
+        
+    </style>
+</head>
+<body>
+    <!--Main Title-->
+    <h1>My Planner <sub>~2024</sub></h1>
+    <!--End of Main Title-->
+
+    <!--To-Do List-->
+    <div class="ToDoList">
+        <fieldset class="fieldset1">
+            <legend>To-Do List</legend>
+            <form action="{{ url_for('add_task') }}" method="POST">
+                <div>
+                    <input type="checkbox" class="checkbox">
+                    <textarea name="task_description" placeholder="Insert Task" required></textarea>
+                    <input type="date" name="due_date" placeholder="due-date" required>
+                    <button type="submit">Add</button>
+                </div>
+            </form>
+            <br>
+            <!-- Display tasks -->
+            {% for task in tasks %}
+            <div>
+                <input type="checkbox" class="checkbox">
+                <textarea disabled>{{ task[1] }}</textarea>
+                <input type="date" value="{{ task[2] }}" disabled>
+                <form action="{{ url_for('delete_task', task_id=task[0]) }}" method="POST" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+            <br>
+            {% endfor %}
+        </fieldset>
+    </div>
+    <!--End of TO Do List-->
+
+    <!--Calendar-->
+    <div class="calendar">
+        <fieldset class="fieldset2">
+            <legend>Calendar</legend>
+            <div class="enter_event">
+            <form action="{{ url_for('add_event') }}" method="POST">
+                <div>
+                    <textarea name="event_description" placeholder="Insert Event" required></textarea>
+                    <input type="date" name="event_date" placeholder="event-date" required>
+                    <button type="submit">Add</button>
+                </div>
+            </form>
+            <br>
+            <!-- Display events -->
+            {% for event in events %}
+            <div>
+                <textarea disabled>{{ event[2] }}</textarea>
+                <input type="date" value="{{ event[1] }}" disabled>
+                <form action="{{ url_for('delete_event', event_id=event[0]) }}" method="POST" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+            <br>
+            {% endfor %}
+        </fieldset>
+    </div>
+    <!--End of Calendar-->
+
+</body>
+</html>
